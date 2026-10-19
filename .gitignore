@@ -1,0 +1,110 @@
+# --- system and editor files ---
+.DS_Store
+*.code-workspace
+_tmp*
+
+# --- assets: only files the website uses are uploaded ---
+# Your large original images stay in Google Drive only.
+# To publish a NEW image, add a line "!assets/…/name.jpg" below.
+assets/**
+!assets/**/
+
+!assets/documents/Under pressure/Masterarbeit_Lenja Kausch.pdf
+!assets/fonts/array-600.woff2
+!assets/fonts/general-sans-300.woff2
+!assets/fonts/general-sans-400.woff2
+!assets/fonts/general-sans-500.woff2
+!assets/fonts/general-sans-600.woff2
+!assets/fonts/general-sans-700.woff2
+!assets/icons/icon-arrow-circle-mumuth.svg
+!assets/icons/icon-arrow-circle-saxxella.svg
+!assets/icons/icon-arrow-circle-underpressure.svg
+!assets/icons/icon-arrow-circle.svg
+!assets/icons/icon-arrow-right-circle.svg
+!assets/icons/icon-menu-mumuth.svg
+!assets/icons/icon-menu-saxxella.svg
+!assets/icons/icon-menu-underpressure.svg
+!assets/icons/icon-menu.svg
+!assets/images/About me/web/DSCF4870.jpg
+!assets/images/Entangled in Democracy/concept and idea 1.jpg
+!assets/images/Entangled in Democracy/concept and idea 2.png
+!assets/images/Entangled in Democracy/concept and idea 3.jpg
+!assets/images/Entangled in Democracy/dramaturgy-chart.png
+!assets/images/Entangled in Democracy/final result 1.jpg
+!assets/images/Entangled in Democracy/final result 10.jpg
+!assets/images/Entangled in Democracy/final result 11.jpg
+!assets/images/Entangled in Democracy/final result 12.jpg
+!assets/images/Entangled in Democracy/final result 13.jpg
+!assets/images/Entangled in Democracy/final result 14.jpg
+!assets/images/Entangled in Democracy/final result 15.jpg
+!assets/images/Entangled in Democracy/final result 2.jpg
+!assets/images/Entangled in Democracy/final result 3.jpg
+!assets/images/Entangled in Democracy/final result 4.jpg
+!assets/images/Entangled in Democracy/final result 5.jpg
+!assets/images/Entangled in Democracy/final result 6.jpg
+!assets/images/Entangled in Democracy/final result 7.jpg
+!assets/images/Entangled in Democracy/final result 8.jpg
+!assets/images/Entangled in Democracy/final result 9.jpg
+!assets/images/Entangled in Democracy/floorplan-base.png
+!assets/images/Entangled in Democracy/material-construction-foil.png
+!assets/images/Entangled in Democracy/material-molleton.png
+!assets/images/Entangled in Democracy/material-tulle.png
+!assets/images/Mumuth/Mumuth_Building.png
+!assets/images/Mumuth/web/Mumuth_Concept and Idea_1.jpg
+!assets/images/Mumuth/web/Mumuth_Concept and Idea_2.jpg
+!assets/images/Mumuth/web/Mumuth_Intro.jpg
+!assets/images/Mumuth/web/Mumuth_final result_1.jpg
+!assets/images/Mumuth/web/Mumuth_final result_2.jpg
+!assets/images/Mumuth/web/Mumuth_final result_3.jpg
+!assets/images/Mumuth/web/Mumuth_final result_4.jpg
+!assets/images/Mumuth/web/Mumuth_final result_5.jpg
+!assets/images/Mumuth/web/Mumuth_final result_6.jpg
+!assets/images/Saxxella/web/saxxella_intro_rotated.jpg
+!assets/images/Saxxella/web/saxxella_logo.jpg
+!assets/images/Saxxella/web/saxxella_poster.jpg
+!assets/images/Saxxella/web/saxxella_shirt.jpg
+!assets/images/Saxxella/web/saxxella_web.jpg
+!assets/images/Saxxella/web/saxxella_welcome-bag.jpg
+!assets/images/Under Pressure/web/floorplan-rotated.jpg
+!assets/images/Under Pressure/web/materialien.jpg
+!assets/images/Under Pressure/web/room-1-01-crumbling-wall-frontal.jpg
+!assets/images/Under Pressure/web/room-1-01-crumbling-wall-schra-g.jpg
+!assets/images/Under Pressure/web/room-1-01-crumbling-wall-seite.jpg
+!assets/images/Under Pressure/web/room-1-01-hans-falkner-frontal.jpg
+!assets/images/Under Pressure/web/room-1-01-hans-falkner-schra-g.jpg
+!assets/images/Under Pressure/web/room-1-01-hans-falkner-seite.jpg
+!assets/images/Under Pressure/web/room-1-01-irritation-frontal.jpg
+!assets/images/Under Pressure/web/room-1-01-irritation-schra-g-2.jpg
+!assets/images/Under Pressure/web/room-1-01-irritation-seite.jpg
+!assets/images/Under Pressure/web/room-1-01-kritisch-frontal.jpg
+!assets/images/Under Pressure/web/room-1-01-kritisch-schra-g.jpg
+!assets/images/Under Pressure/web/room-1-01-kritisch-seite.jpg
+!assets/images/Under Pressure/web/room-2-01-raumtext.jpg
+!assets/images/Under Pressure/web/room-2-02-narrativ.jpg
+!assets/images/Under Pressure/web/room-2-03-gestaltung.jpg
+!assets/images/Under Pressure/web/room-2-04-gestaltung-nahaufnahme.jpg
+!assets/images/Under Pressure/web/room-2-05-zeitstrahl.jpg
+!assets/images/Under Pressure/web/room-3-01-raumtext-station-1.jpg
+!assets/images/Under Pressure/web/room-3-02-raumtext-wappen-detail.jpg
+!assets/images/Under Pressure/web/room-3-03-raumtext-tradition-sport.jpg
+!assets/images/Under Pressure/web/room-3-04-build-nation.jpg
+!assets/images/Under Pressure/web/testung-ambivalent-version.jpg
+!assets/images/Under Pressure/web/testung-critical-version-1.jpg
+!assets/images/Under Pressure/web/testung-critical-version-2.jpg
+!assets/images/Under Pressure/web/testung-nationalist-authoritarian-version-1.jpg
+!assets/images/Under Pressure/web/testung-nationalist-authoritarian-version-2.jpg
+!assets/images/c2c2/web/c2c2_Concept and Idea_1.jpg
+!assets/images/c2c2/web/c2c2_Concept and Idea_2.jpg
+!assets/images/c2c2/web/c2c2_Final Concept.jpg
+!assets/images/c2c2/web/c2c2_Intro.jpg
+!assets/images/landing page/alt/pixel-pattern.png
+!assets/images/landing page/alt/pixel-strip.png
+!assets/images/landing page/web/cs2.jpg
+!assets/images/landing page/web/entangled-in-democracy.jpg
+!assets/images/landing page/web/mumuth.jpg
+!assets/images/landing page/web/saxxella.jpg
+!assets/images/landing page/web/under-pressure.jpg
+!assets/videos/PA03_Doku.mp4
+
+# --- separate repository, not part of this website ---
+/Portfolio/

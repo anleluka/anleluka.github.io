@@ -1,0 +1,10 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="36" height="35.9331" viewBox="0 0 36 35.9331" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Group 56">
+<mask id="stroke0_0_4" fill="white">
+<path d="M36 17.9666C36 27.8892 27.9411 35.9331 18 35.9331C8.05887 35.9331 0 27.8892 0 17.9666C0 8.0439 8.05887 0 18 0C27.9411 0 36 8.0439 36 17.9666Z"/>
+</mask>
+<path id="Ellipse 16" d="M36 17.9666C36 27.8892 27.9411 35.9331 18 35.9331C8.05887 35.9331 0 27.8892 0 17.9666C0 8.0439 8.05887 0 18 0C27.9411 0 36 8.0439 36 17.9666Z" stroke-width="4" stroke="black" mask="url(#stroke0_0_4)"/>
+<path id="Vector 53" d="M9.00081 17.4358L8.00011 17.4358L7.9985 19.4344L8.9992 19.4344L9 18.4351L9.00081 17.4358ZM26.2492 19.4344L27.2499 19.4344L27.2515 17.4358L26.2508 17.4358L26.25 18.4351L26.2492 19.4344ZM9 18.4351L8.9992 19.4344L26.2492 19.4344L26.25 18.4351L26.2508 17.4358L9.00081 17.4358L9 18.4351Z" fill="black"/>
+<path id="Polygon 1" d="M18.8491 24.8833L26.9214 18.3948L18.8491 11.9062" stroke-width="2" stroke-linecap="square" stroke="black"/>
+</g>
+</svg>
