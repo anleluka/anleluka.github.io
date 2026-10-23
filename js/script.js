@@ -434,7 +434,8 @@
       el.parentNode.setAttribute('aria-label', texts(list).join(' '));
       // lowercase text (e.g. the landing page's "Digital meets space.") flickers through lowercase letters
       if (/[a-z]/.test(target) && !/[A-Z]{2}/.test(getComputedStyle(el).textTransform === 'uppercase' ? 'XX' : target)) glyphs = LOWER;
-      return { el: el, target: target, before: before, len: Math.max(target.length, before.length), glyphs: glyphs };
+      // html: original markup, restored afterwards so line breaks inside the title (e.g. Under / Pressure) survive
+      return { el: el, html: el.innerHTML, target: target, before: before, len: Math.max(target.length, before.length), glyphs: glyphs };
     });
   }
   var jobs = scrambleSetup(titleLines, saved.title || [], UPPER).concat(scrambleSetup(subLines, saved.sub || [], LOWER));
@@ -483,7 +484,7 @@
     if (tick !== lastTick || tt >= 1) { renderText(tt); lastTick = tick; }
     if (tc < 1 || tt < 1) { requestAnimationFrame(frame); return; }
     VARS.forEach(function (v) { body.style.removeProperty(v); });
-    jobs.forEach(function (job) { if (job.node) job.node.nodeValue = job.target; else job.el.textContent = job.target; });
+    jobs.forEach(function (job) { if (job.node) job.node.nodeValue = job.target; else job.el.innerHTML = job.html; });
   }
   requestAnimationFrame(frame);
 })();

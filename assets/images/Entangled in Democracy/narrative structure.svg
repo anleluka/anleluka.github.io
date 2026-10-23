@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1077.5 561.5">
+  <!-- Generator: Adobe Illustrator 30.5.0, SVG Export Plug-In . SVG Version: 2.1.4 Build 167)  -->
+  <defs>
+    <style>
+      .st0 {
+        stroke-dasharray: 20 20;
+      }
+
+      .st0, .st1, .st2, .st3 {
+        fill: none;
+        stroke: #6a00ff;
+        stroke-width: 3px;
+      }
+
+      .st0, .st1, .st3 {
+        stroke-opacity: .5;
+      }
+
+      .st1 {
+        stroke-dasharray: 3 3;
+      }
+
+      .st3 {
+        stroke-dasharray: 8 8;
+      }
+    </style>
+  </defs>
+  <path class="st2" d="M3.6,557"/>
+  <path class="st2" d="M3.1,558.5c268.5-83,558-374.4,770-374.4s222.7,225.7,249.5,375.9"/>
+  <path class="st1" d="M3.1,558.5c.5-41.8,22.3-130.9,77.5-138.5,69-9.5,216.5,38.5,258,30.5s185-69.5,251-67.5,163,165,219,162c44.8-2.4,185.2-155.5,268-162"/>
+  <path class="st0" d="M2.6,557c71.5-75.7,233.4-228.3,309-233.5,94.5-6.5,200.5-31,253.5-22,53,9,188,254.5,262.5,241.5s197-36.8,249-32.8"/>
+  <path class="st3" d="M3.1,558.5c93.8-49.8,302.2-151.6,385-160,103.5-10.5,155,43,208,37s142-232.5,239-223.5c77.6,7.2,167.7,234,203,346.5"/>
+  <polyline class="st2" points="1.5 0 1.5 560 1077.5 560"/>
+</svg>

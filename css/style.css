@@ -652,11 +652,7 @@ button { font: inherit; background: none; border: none; padding: 0; color: inher
   height: 2px;
   background-image: repeating-linear-gradient(to right, var(--color-accent) 0 6px, transparent 6px 9px, var(--color-accent) 9px 11px, transparent 11px 16px);
 }
-.dramaturgy__chart {
-  border-left: 2px solid var(--color-accent);
-  border-bottom: 2px solid var(--color-accent);
-}
-.dramaturgy__chart img { width: 100%; height: auto; }
+.dramaturgy__chart img { display: block; width: 100%; height: auto; } /* the SVG draws its own axes */
 .dramaturgy__rooms {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -681,6 +677,9 @@ button { font: inherit; background: none; border: none; padding: 0; color: inher
 
 /* ---------- Floorplan ---------- */
 .floorplan { padding-top: var(--gap-md); padding-bottom: var(--gap-xl); }
+/* the drawn floor plan has the room names in it, so it keeps its own proportions */
+.floorplan__diagram--plan { aspect-ratio: auto; }
+.floorplan__diagram--plan img { display: block; width: 100%; height: auto; }
 .floorplan__diagram {
   position: relative;
   width: 100%;
@@ -776,7 +775,7 @@ button { font: inherit; background: none; border: none; padding: 0; color: inher
 }
 .about-intro__grid { display: flex; flex-direction: column; }
 .about-intro__photo {
-  width: 75%;
+  width: 100%; /* phones: full content width */
   height: auto;
   aspect-ratio: 418 / 564;
   object-fit: cover;
@@ -848,6 +847,7 @@ button { font: inherit; background: none; border: none; padding: 0; color: inher
 .timeline__item:last-child::before { height: 1.2em; }
 .timeline__item::after {
   content: "";
+  box-sizing: border-box; /* border inside the 18/28px, so the dot is centred on the line */
   position: absolute;
   left: calc(var(--tl-x) - 9px);
   top: calc(0.675em - 9px);
@@ -1612,7 +1612,7 @@ button { font: inherit; background: none; border: none; padding: 0; color: inher
 .up-block { margin-top: var(--gap-md); }
 .up-block--h3 { margin-top: clamp(3rem, 6vw, 5rem); }
 #dramaturgy > .section-lede { margin-bottom: 0; }
-#dramaturgy > .up-figure { margin-top: var(--gap-sm); }
+@media (max-width: 55.99em) { #dramaturgy > .up-figure { margin-top: var(--gap-sm); } } /* phones: small gap under the text */
 .up-block > .section-lede:last-child,
 .up-section .section-lede:last-child { margin-bottom: 0; }
 .up-question { margin-bottom: 0; } /* spans all 8 content columns */
@@ -1626,6 +1626,8 @@ button { font: inherit; background: none; border: none; padding: 0; color: inher
   height: auto;
   margin-top: clamp(1.5rem, 3vw, 2.5rem);
 }
+#visual-identity > .section-lede { margin-bottom: 0; } /* images close under the text */
+#visual-identity > .up-figure { margin-top: var(--gap-sm); } /* small distance */
 .up-figure--materials { mix-blend-mode: multiply; } /* the sample photo's white ground disappears into the page */
 .up-block .media-frame { margin: clamp(1.5rem, 3vw, 2.5rem) 0 0; }
 .up-section.final-result { padding-top: var(--gap-xl); padding-bottom: var(--gap-xl); }
@@ -1730,11 +1732,22 @@ button { font: inherit; background: none; border: none; padding: 0; color: inher
   .up-plan {
     display: grid;
     grid-template-columns: repeat(8, var(--grid-col));
+    grid-template-rows: auto auto 1fr; /* the plan's extra height goes into the last row, not between heading and text */
     column-gap: 20px;
   }
-  .up-plan > .section-title { grid-column: 1 / -1; }
-  .up-plan > .section-lede { grid-column: 1 / span 3; width: auto; margin-left: 0; margin-bottom: 0; }
-  .up-block.up-plan > .up-figure { grid-column: 1 / -1; width: 100%; margin: var(--gap-sm) 0 0; } /* small distance */
+  .up-plan > .section-title { grid-column: 1 / -1; grid-row: 1; position: relative; z-index: 1; }
+  /* the text sits in the empty top-left corner of the plan; plan and text start at the same height */
+  .up-plan > .section-lede { grid-column: 1 / span 3; grid-row: 2; position: relative; z-index: 1; width: auto; margin-left: 0; margin-bottom: 0; }
+  /* the building's left wall starts 11.625% into the image: shift and enlarge the plan so that wall
+     lines up with the text and the right edge stays at the content edge */
+  .up-block.up-plan > .up-figure {
+    grid-column: 1 / -1;
+    grid-row: 1 / -1; /* top of the plan = top of the heading */
+    align-self: start;
+    width: calc(100% / 0.88375);
+    max-width: none;
+    margin: 0 0 0 calc(-100% * 0.11625 / 0.88375);
+  }
 }
 @media (min-width: 56em) {
   /* text blocks sit in the lede column (page column 4, four columns wide); tables and sliders use the full width */
@@ -1784,19 +1797,19 @@ button { font: inherit; background: none; border: none; padding: 0; color: inher
   gap: 2.5rem;
   min-height: clamp(10rem, 20vw, 15rem);
 }
-/* legal links on their own line under the CTA (phones: between CTA and contacts) */
-.footer__title { order: 0; }
-.footer__links { order: 2; }
+/* legal links: phones after the contact links, desktop under the CTA */
 .footer__legal {
   display: flex;
   flex-wrap: wrap;
   flex-basis: 100%;
   gap: 0.5rem 1.5rem;
-  order: 1;
-  margin: calc(var(--gap-sm) - 2.5rem) 0 0; /* small distance to the CTA (cancels the footer's 2.5rem gap) */
+  margin: calc(var(--gap-sm) - 2.5rem) 0 0; /* small distance to the line above (cancels the footer's 2.5rem gap) */
   font-size: var(--fs-small);
 }
 .footer__legal a:hover { text-decoration: underline; }
+@media (max-width: 55.99em) {
+  .footer__legal { flex-direction: column; gap: 0.35rem; } /* phones: stacked like the contact links */
+}
 .footer__title {
   font-weight: 500;
   font-size: var(--fs-footer-title);
@@ -1854,7 +1867,8 @@ button { font: inherit; background: none; border: none; padding: 0; color: inher
   .site-header.is-open .nav-trigger__plus::after {
     transform: translateY(-50%) rotate(-45deg);
   }
-  .site-header.is-open .logo { opacity: 0; visibility: hidden; }
+  /* open overlay: the name stays on top (links to the landing page), the menu starts below it */
+  .site-header.is-open .logo { position: relative; z-index: 2; }
 
   .nav-panel {
     position: fixed;
@@ -1867,8 +1881,7 @@ button { font: inherit; background: none; border: none; padding: 0; color: inher
     overflow: hidden;
     background: var(--color-accent);
     padding-inline: var(--nav-overlay-pad);
-    /* first entry sits exactly where the logo is in the closed header */
-    padding-top: calc((var(--header-h) - var(--logo-h)) / 2);
+    padding-top: calc(var(--header-h) + 1.5rem);
   }
   .nav-list { position: relative; z-index: 1; gap: 1.1rem; }
   .nav-list__item { line-height: 1; }
