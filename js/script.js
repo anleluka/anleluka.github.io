@@ -1,4 +1,23 @@
 (function () {
+  // No widows: the last two words of every text block are joined by a non-breaking space,
+  // so a paragraph never ends with a single word on its own line.
+  // Skipped when the two words together are too long (e-mail addresses, URLs) to fit on a phone.
+  var SELECTOR = 'p, li, dd, td, th, summary, .landing-project__desc, .alt-project__desc, .alt-intro, .footer__title, .up-rooms__text';
+  document.querySelectorAll(SELECTOR).forEach(function (el) {
+    if (el.closest('.site-header, .footer__links, .footer__legal')) return;
+    var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+    var last = null;
+    for (var n = walker.nextNode(); n; n = walker.nextNode()) if (/\S/.test(n.nodeValue)) last = n;
+    if (!last) return;
+    var m = last.nodeValue.match(/^([\s\S]*\S)[ \t\n]+(\S+)(\s*)$/);
+    if (!m) return;
+    var prevWord = m[1].match(/\S+$/)[0];
+    if (prevWord.length + m[2].length > 22) return;
+    last.nodeValue = m[1] + ' ' + m[2] + m[3];
+  });
+})();
+
+(function () {
   var header = document.querySelector('.site-header');
   var trigger = document.querySelector('.nav-trigger');
   var panel = document.getElementById('nav-panel');
@@ -199,7 +218,8 @@
     var mobile = W < 700;
     var cell = mobile ? 12 : Math.max(12, Math.round(W / 90));
     var end = main.querySelector('[data-pattern-end]');
-    var H = Math.round((end ? end.getBoundingClientRect().top : mainRect.bottom) - svgRect.top);
+    // reach 1px under the project list's top line, so no hairline gap shows between pattern and line
+    var H = Math.ceil((end ? end.getBoundingClientRect().top : mainRect.bottom) - svgRect.top) + 1;
     if (H <= 0) return;
 
     var boxes = [];
@@ -219,8 +239,8 @@
       { l: Math.max(asideLeft + 90 * s, 0.5 * W), r: W + cell, t: -cell, b: 80 * s },   // band along the top
       { l: 0.6 * W, r: 0.86 * W, t: -cell, b: 160 * s },                                 // its ragged lower edge
       { l: 0.85 * W, r: W + cell, t: -cell, b: 550 * s },                                // column down the right
-      { l: 0.757 * W, r: 0.896 * W, t: H - 295 * s, b: H },                              // block above the list
-      { l: asideLeft, r: 0.896 * W, t: H - 155 * s, b: H }                               // band resting on the list
+      { l: 0.757 * W, r: 0.896 * W, t: H - 295 * s, b: H + 3 * cell },                   // block above the list (solid down to the line)
+      { l: asideLeft, r: 0.896 * W, t: H - 155 * s, b: H + 3 * cell }                    // band resting on the list (solid down to the line)
     ];
 
     function weight(x, y) {
@@ -250,7 +270,7 @@
     var oy = br ? (br.top + br.bottom) / 2 - svgRect.top : 0;
     var cells = [], maxDist = 1;
     function square(x, y, c) { return 'M' + x + ' ' + y + 'h' + c + 'v' + c + 'h' + (-c) + 'Z'; }
-    for (var j = 0; j * cell < H; j++) {
+    for (var j = 0; j * cell < H; j++) { // the last row is clipped at H, so the pattern sits right on the line
       for (var i = 0; i * cell < W; i++) {
         var x = i * cell, y = j * cell, c = cell;
         var w = weight(x, y);
@@ -356,7 +376,13 @@
 
   var timer;
   window.addEventListener('resize', function () { clearTimeout(timer); timer = setTimeout(redraw, 120); });
-  if (main.offsetParent) show(); // the second design is active on load
+  // the second design is active on load: unfold the pattern. If a page transition is running,
+  // its text is still scrambling (and changing width), so wait until the text has settled.
+  setTimeout(function () {
+    if (!main.offsetParent) return;
+    if (window.pageTransitionRunning) document.addEventListener('pagetransitionend', show, { once: true });
+    else show();
+  }, 0);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(redraw);
 })();
 
@@ -413,6 +439,7 @@
   try { saved = JSON.parse(sessionStorage.getItem(KEY)); sessionStorage.removeItem(KEY); } catch (err) {}
   if (!saved || saved.to !== here) return;
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  window.pageTransitionRunning = true;
 
   function ease(t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
 
@@ -485,6 +512,8 @@
     if (tc < 1 || tt < 1) { requestAnimationFrame(frame); return; }
     VARS.forEach(function (v) { body.style.removeProperty(v); });
     jobs.forEach(function (job) { if (job.node) job.node.nodeValue = job.target; else job.el.innerHTML = job.html; });
+    window.pageTransitionRunning = false; // text is final now; the landing pattern can measure it
+    document.dispatchEvent(new Event('pagetransitionend'));
   }
   requestAnimationFrame(frame);
 })();
